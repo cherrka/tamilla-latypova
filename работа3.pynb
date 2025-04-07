@@ -1,0 +1,1484 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPC6imzHfE/z+6ISSBcheNY",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/cherrka/tamilla-latypova/blob/main/%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B03.pynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "1. Найти номера всех отрицательных элементов (вывести их на экран), если таких нет, то сообщить об этом."
+      ],
+      "metadata": {
+        "id": "t85hB421S1rD"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "x = [1, 1, 2, 3, 4, -5]\n",
+        "t = False\n",
+        "for i in x:\n",
+        "  if (i < 0):\n",
+        "    print(x.index(i)+1, end=\" \")\n",
+        "    t = True\n",
+        "if (t == False):\n",
+        "  print(\"таких нет!\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "4XkUIGIeTG9P",
+        "outputId": "a24fa148-1d97-4ee1-8093-632aa2052ef3"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "6 "
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "2. Даны целые числа N (> 2), A и B. Сформировать и вывести целочисленный массив размера N, первый элемент которого равен A, второй равен B, а каждый последующий элемент равен сумме всех предыдущих."
+      ],
+      "metadata": {
+        "id": "UiRQEAtBXICj"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "n = int(input())\n",
+        "a = int(input())\n",
+        "b = int(input())\n",
+        "m = [a, b, a+b]\n",
+        "sum = a+b\n",
+        "for i in range(2, n-1):\n",
+        "  sum += m[i]\n",
+        "  m.append(sum)\n",
+        "print(m)"
+      ],
+      "metadata": {
+        "id": "yxsDDmxfXInN",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "bc250d9e-b160-4e76-cfe6-76e8bd946c7f"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "5\n",
+            "1\n",
+            "2\n",
+            "[1, 2, 3, 6, 12]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "3. Дан массив размера N. Заменить каждый элемент массива на среднее арифметическое этого элемента и его соседей."
+      ],
+      "metadata": {
+        "id": "YUz5lQiRZYcf"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "n = int(input())\n",
+        "m = []\n",
+        "for i in range(0, n):\n",
+        "  x = int(input())\n",
+        "  m.append(x)\n",
+        "res = []\n",
+        "for i in range(1, n-1):\n",
+        "  res.append((m[i-1]+m[i]+m[i+1])/3)\n",
+        "print(res)8"
+      ],
+      "metadata": {
+        "id": "g7oxHnhVZZrW",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "2b527dde-1724-410a-e580-8c7a0621c86e"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "5\n",
+            "2\n",
+            "2\n",
+            "7\n",
+            "7\n",
+            "8\n",
+            "[3.6666666666666665, 5.333333333333333, 7.333333333333333]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "4. Дан целочисленный двумерный массив, размерности n х m. Найти максимум и минимум. Поменять их местами."
+      ],
+      "metadata": {
+        "id": "ebOiGiNqd_Vb"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import numpy as np\n",
+        "array = np.array([[3, 5, 1],\n",
+        "                  [4, 8, 6],\n",
+        "                  [7, 2, 9]])\n",
+        "max_value = array[0][0]\n",
+        "min_value = array[0][0]\n",
+        "max_index = (0, 0)\n",
+        "min_index = (0, 0)\n",
+        "for i in range(array.shape[0]):\n",
+        "    for j in range(array.shape[1]):\n",
+        "        if array[i][j] > max_value:\n",
+        "            max_value = array[i][j]\n",
+        "            max_index = (i, j)\n",
+        "        if array[i][j] < min_value:\n",
+        "            min_value = array[i][j]\n",
+        "            min_index = (i, j)\n",
+        "array[max_index] = min_value\n",
+        "array[min_index] = max_value\n",
+        "print(\"Измененный массив:\")\n",
+        "print(array)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "oD397zlNeC-L",
+        "outputId": "4c5b7eda-521d-4832-bdb8-d3148062a89a"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Измененный массив:\n",
+            "[[3 5 9]\n",
+            " [4 8 6]\n",
+            " [7 2 1]]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "1.1 Пересечение словарей: Напишите функцию, которая принимает два словаря и возвращает новый словарь, содержащий только те пары ключ-значение, которые присутствуют в обоих словарях."
+      ],
+      "metadata": {
+        "id": "xAqyot9wKFyg"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def intersect_dicts(dict1, dict2):\n",
+        "    return {key: dict1[key] for key in dict1 if key in dict2}\n",
+        "dict_a = {'a': 1, 'b': 2, 'c': 3}\n",
+        "dict_b = {'b': 2, 'c': 4, 'd': 5}\n",
+        "result = intersect_dicts(dict_a, dict_b)\n",
+        "print(result)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "yayJi1o9KG5S",
+        "outputId": "0b86bd50-d4ad-4e1f-a23a-7e1451bc2976"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "{'b': 2, 'c': 3}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "1.2 Разность словарей: Напишите функцию, которая принимает два словаря и возвращает новый словарь, содержащий только те пары ключ-значение, которые присутствуют в первом словаре, но отсутствуют во втором.\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "qhfR7YwJMvfq"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def difference_dicts(dict1, dict2):\n",
+        "    return {key: dict1[key] for key in dict1 if key not in dict2}\n",
+        "dict_a = {'a': 1, 'b': 2, 'c': 3}\n",
+        "dict_b = {'b': 2, 'c': 4, 'd': 5}\n",
+        "result = difference_dicts(dict_a, dict_b)\n",
+        "print(result)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "JEoJbSepMsha",
+        "outputId": "af474a16-1e83-4f4f-9920-eb47a7bb59f1"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "{'a': 1}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "1.3 Обновление значений: Напишите функцию, которая увеличивает все значения в словаре на заданное число."
+      ],
+      "metadata": {
+        "id": "S3yVlGTMNBG6"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def update_values(input_dict, increment):\n",
+        "    return {key: value + increment for key, value in input_dict.items()}\n",
+        "my_dict = {'a': 1, 'b': 2, 'c': 3}\n",
+        "increment_value = 5\n",
+        "updated_dict = update_values(my_dict, increment_value)\n",
+        "print(updated_dict)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "fjzEtI72NGqv",
+        "outputId": "b041aa5a-559c-4e34-c07f-1f4d0d5674c3"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "{'a': 6, 'b': 7, 'c': 8}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "1.4 Преобразование значений: Напишите функцию, которая преобразует все значения в словаре в строки."
+      ],
+      "metadata": {
+        "id": "TcvZb561Oz4-"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def convert_values_to_strings(input_dict):\n",
+        "    return {key: str(value) for key, value in input_dict.items()}\n",
+        "my_dict = {'a': 1, 'b': 2.5, 'c': True, 'd': None}\n",
+        "converted_dict = convert_values_to_strings(my_dict)\n",
+        "print(converted_dict)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "e_j6rwCaO2Sz",
+        "outputId": "84417708-ec07-459d-b023-341d0413d2d8"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "{'a': '1', 'b': '2.5', 'c': 'True', 'd': 'None'}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "1.5 Ключи с максимальной длиной: Напишите функцию, которая находит ключ с максимальной длиной в словаре.\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "fTZro2eaPK__"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def find_longest_key(input_dict):\n",
+        "    if not input_dict:\n",
+        "        return None\n",
+        "    longest_key = max(input_dict.keys(), key=len)\n",
+        "    return longest_key\n",
+        "my_dict = {'short': 1, 'longer_key': 2.5, 'longest_key_here': True}\n",
+        "longest_key = find_longest_key(my_dict)\n",
+        "print(longest_key)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "JbN66V3OPWN6",
+        "outputId": "c5f1ac7b-afff-446f-da8a-5fcc81ed3e48"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "longest_key_here\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "1.6 Ключи с минимальной длиной: Напишите функцию, которая находит ключ с минимальной длиной в словаре.\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "N9J8VhKxPkJT"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def find_shortest_key(input_dict):\n",
+        "    if not input_dict:\n",
+        "        return None\n",
+        "    shortest_key = min(input_dict.keys(), key=len)\n",
+        "    return shortest_key\n",
+        "my_dict = {'short': 1, 'longer_key': 2.5, 'a': True, 'ab': False}\n",
+        "shortest_key = find_shortest_key(my_dict)\n",
+        "print(shortest_key)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "aCPPNresPlUr",
+        "outputId": "c7be99c8-2ff5-415a-d802-f765467b306b"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "a\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "1.7 Группировка по типам значений: Напишите функцию, которая группирует ключи словаря по типам их значений (например, int, str, list)."
+      ],
+      "metadata": {
+        "id": "rHwEpFP3P3ll"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def group_keys_by_value_type(input_dict):\n",
+        "    grouped_keys = {}\n",
+        "    for key, value in input_dict.items():\n",
+        "        value_type = type(value)\n",
+        "        if value_type not in grouped_keys:\n",
+        "            grouped_keys[value_type] = []\n",
+        "        grouped_keys[value_type].append(key)\n",
+        "    return grouped_keys\n",
+        "my_dict = {\n",
+        "    'a': 1,\n",
+        "    'b': 'hello',\n",
+        "    'c': [1, 2, 3],\n",
+        "    'd': 2,\n",
+        "    'e': 'world',\n",
+        "    'f': {'key': 'value'},\n",
+        "}\n",
+        "grouped_keys = group_keys_by_value_type(my_dict)\n",
+        "print(grouped_keys)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "q2sAAnVOQOHu",
+        "outputId": "b2220846-9a83-4e06-cacc-ccdb6f363d9b"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "{<class 'int'>: ['a', 'd'], <class 'str'>: ['b', 'e'], <class 'list'>: ['c'], <class 'dict'>: ['f']}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "1.8 Среднее значение: Напишите функцию, которая вычисляет среднее значение всех числовых значений в словаре."
+      ],
+      "metadata": {
+        "id": "vIif69sXQoE5"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def calculate_average(input_dict):\n",
+        "    total = 0\n",
+        "    count = 0\n",
+        "    for value in input_dict.values():\n",
+        "        if isinstance(value, (int, float)):\n",
+        "            total += value\n",
+        "            count += 1\n",
+        "    if count == 0:\n",
+        "        return None\n",
+        "    return total / count\n",
+        "my_dict = {\n",
+        "    'a': 1,\n",
+        "    'b': 'hello',\n",
+        "    'c': 3.5,\n",
+        "    'd': 2,\n",
+        "    'e': 'world',\n",
+        "    'f': 4,\n",
+        "}\n",
+        "average = calculate_average(my_dict)\n",
+        "print(f\"Среднее значение: {average}\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "TO2lan7EQxG0",
+        "outputId": "31349ae7-eca9-4af3-906d-c193f1828e72"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Среднее значение: 2.625\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "1.9 Частота значений: Напишите функцию, которая подсчитывает частоту каждого значения в словаре."
+      ],
+      "metadata": {
+        "id": "5E3KHLiERUSs"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def value_frequency(input_dict):\n",
+        "    frequency = {}\n",
+        "    for value in input_dict.values():\n",
+        "        if value in frequency:\n",
+        "            frequency[value] += 1\n",
+        "        else:\n",
+        "            frequency[value] = 1\n",
+        "    return frequency\n",
+        "my_dict = {\n",
+        "    'a': 1,\n",
+        "    'b': 2,\n",
+        "    'c': 1,\n",
+        "    'd': 3,\n",
+        "    'e': 2,\n",
+        "    'f': 1,\n",
+        "}\n",
+        "frequency_result = value_frequency(my_dict)\n",
+        "print(\"Частота значений:\", frequency_result)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "U3O8ZEsCRydo",
+        "outputId": "cb5a16db-5609-4109-a3c2-91c653e7b556"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Частота значений: {1: 3, 2: 2, 3: 1}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "1.10 Ключи с палиндромами: Напишите функцию, которая возвращает список ключей, связанных со значениями-палиндромами."
+      ],
+      "metadata": {
+        "id": "R2XioJgaSJ3H"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def is_palindrome(s):\n",
+        "    return s == s[::-1]\n",
+        "def keys_with_palindrome_values(input_dict):\n",
+        "    palindrome_keys = []\n",
+        "    for key, value in input_dict.items():\n",
+        "        if isinstance(value, str) and is_palindrome(value):\n",
+        "            palindrome_keys.append(key)\n",
+        "    return palindrome_keys\n",
+        "my_dict = {\n",
+        "    'a': 'madam',\n",
+        "    'b': 'hello',\n",
+        "    'c': 'racecar',\n",
+        "    'd': 'world',\n",
+        "    'e': 'level',\n",
+        "}\n",
+        "palindrome_keys = keys_with_palindrome_values(my_dict)\n",
+        "print(\"Ключи с палиндромами:\", palindrome_keys)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "-nOjGQf1SN77",
+        "outputId": "bda0d138-24e4-4992-d933-c540517da5bf"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Ключи с палиндромами: ['a', 'c', 'e']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "2.1 Объединение нескольких множеств: Напишите функцию, которая принимает список множеств и возвращает их объединение.\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "-goA4k7sSpnq"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def union_of_sets(sets_list):\n",
+        "    result = set()\n",
+        "    for s in sets_list:\n",
+        "        result.update(s)\n",
+        "    return result\n",
+        "sets = [\n",
+        "    {1, 2, 3},\n",
+        "    {3, 4, 5},\n",
+        "    {5, 6, 7},\n",
+        "]\n",
+        "result = union_of_sets(sets)\n",
+        "print(\"Объединение множеств:\", result)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "IUPy8VkLSrCO",
+        "outputId": "7a04a5cd-91e1-4309-b369-56a0810eee56"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Объединение множеств: {1, 2, 3, 4, 5, 6, 7}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "2.2 Пересечение нескольких множеств: Напишите функцию, которая принимает список множеств и возвращает их пересечение."
+      ],
+      "metadata": {
+        "id": "K_o1Cmo-S0kW"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def intersection_of_sets(sets_list):\n",
+        "    if not sets_list:\n",
+        "        return set()\n",
+        "    result = sets_list[0]\n",
+        "    for s in sets_list[1:]:\n",
+        "        result.intersection_update(s)\n",
+        "    return result\n",
+        "sets = [\n",
+        "    {1, 2, 3, 4},\n",
+        "    {2, 3, 5},\n",
+        "    {3, 6, 7},\n",
+        "]\n",
+        "result = intersection_of_sets(sets)\n",
+        "print(\"Пересечение множеств:\", result)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "jPxJycMjS42o",
+        "outputId": "38f4c217-8ad0-4955-ec7e-cc681ee4dc4d"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Пересечение множеств: {3}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "2.3 Разбиение множества: Напишите функцию, которая разбивает множество на два: одно с четными числами, другое с нечетными."
+      ],
+      "metadata": {
+        "id": "1JUWwbeETAeK"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def split_set(input_set):\n",
+        "    even_set = set()\n",
+        "    odd_set = set()\n",
+        "    for number in input_set:\n",
+        "        if number % 2 == 0:\n",
+        "            even_set.add(number)\n",
+        "        else:\n",
+        "            odd_set.add(number)\n",
+        "    return even_set, odd_set\n",
+        "input_set = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}\n",
+        "even_numbers, odd_numbers = split_set(input_set)\n",
+        "print(\"Четные числа:\", even_numbers)\n",
+        "print(\"Нечетные числа:\", odd_numbers)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ReN7iMvCTERy",
+        "outputId": "82652dd2-daa6-40f1-f662-ff628839b7dd"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Четные числа: {2, 4, 6, 8, 10}\n",
+            "Нечетные числа: {1, 3, 5, 7, 9}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "2.4 Фильтрация по условию: Напишите функцию, которая фильтрует множество, оставляя только те элементы, которые удовлетворяют заданному условию (например, больше 10)."
+      ],
+      "metadata": {
+        "id": "AP-xpRDqTSDL"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def filter_set(input_set, condition):\n",
+        "    filtered_set = {number for number in input_set if condition(number)}\n",
+        "    return filtered_set\n",
+        "def is_greater_than_10(number):\n",
+        "    return number > 10\n",
+        "input_set = {5, 10, 15, 20, 25, 30}\n",
+        "filtered_numbers = filter_set(input_set, is_greater_than_10)\n",
+        "print(\"Элементы больше 10:\", filtered_numbers)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "kUGdGA8FTVBt",
+        "outputId": "ce87420e-8ee7-4c75-9929-5d41e0bef8e1"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Элементы больше 10: {25, 20, 30, 15}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "2.5 Проверка на наличие общих элементов: Напишите функцию, которая проверяет, имеют ли два множества хотя бы один общий элемент."
+      ],
+      "metadata": {
+        "id": "-TXHRIg-TiWu"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def have_common_elements(set1, set2):\n",
+        "    return not set1.isdisjoint(set2)\n",
+        "set_a = {1, 2, 3, 4}\n",
+        "set_b = {4, 5, 6}\n",
+        "set_c = {7, 8, 9}\n",
+        "print(\"Общие элементы между set_a и set_b:\", have_common_elements(set_a, set_b))\n",
+        "print(\"Общие элементы между set_a и set_c:\", have_common_elements(set_a, set_c))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "FdN61T4xTfX6",
+        "outputId": "397cdb5e-7ded-4ba1-a35c-072ed1cc9906"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Общие элементы между set_a и set_b: True\n",
+            "Общие элементы между set_a и set_c: False\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "2.6 Удаление случайного элемента: Напишите функцию, которая удаляет случайный элемент из множества."
+      ],
+      "metadata": {
+        "id": "0izIhZR7TuTe"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import random\n",
+        "def remove_random_element(s):\n",
+        "    if not s:\n",
+        "        raise ValueError(\"Множество пусто. Невозможно удалить элемент.\")\n",
+        "    element_to_remove = random.choice(tuple(s))\n",
+        "    s.remove(element_to_remove)\n",
+        "    return element_to_remove\n",
+        "my_set = {1, 2, 3, 4, 5}\n",
+        "try:\n",
+        "    removed_element = remove_random_element(my_set)\n",
+        "    print(f\"Удаленный элемент: {removed_element}\")\n",
+        "    print(f\"Оставшееся множество: {my_set}\")\n",
+        "except ValueError as e:\n",
+        "    print(e)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "UXjScrVhT7fM",
+        "outputId": "1a1c227b-57d3-49e9-e378-dff9f5f32db8"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Удаленный элемент: 4\n",
+            "Оставшееся множество: {1, 2, 3, 5}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "2.7 Генерация множества: Напишите функцию, которая генерирует множество из n случайных чисел в заданном диапазоне."
+      ],
+      "metadata": {
+        "id": "zhvgkfGnUF2S"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import random\n",
+        "def generate_random_set(n, start, end):\n",
+        "    if n < 0:\n",
+        "        raise ValueError(\"Количество чисел n не может быть отрицательным.\")\n",
+        "    if start >= end:\n",
+        "        raise ValueError(\"Начало диапазона должно быть меньше конца.\")\n",
+        "    random_set = set()\n",
+        "    while len(random_set) < n:\n",
+        "        random_number = random.randint(start, end - 1)\n",
+        "        random_set.add(random_number)\n",
+        "    return random_set\n",
+        "n = 5\n",
+        "start = 1\n",
+        "end = 10\n",
+        "random_numbers = generate_random_set(n, start, end)\n",
+        "print(f\"Сгенерированное множество: {random_numbers}\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "vBgl3LDsUPUW",
+        "outputId": "c0555f20-6ef8-4422-ecc2-4856941a8b60"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Сгенерированное множество: {3, 5, 6, 7, 9}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "2.8 Объединение с сохранением порядка: Напишите функцию, которая объединяет два множества и возвращает результат в виде отсортированного списка."
+      ],
+      "metadata": {
+        "id": "2wNsywX2Un0p"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def union_and_sort(set1, set2):\n",
+        "    combined_set = set1 | set2\n",
+        "    sorted_list = sorted(combined_set)\n",
+        "    return sorted_list\n",
+        "set1 = {3, 1, 4}\n",
+        "set2 = {2, 4, 5}\n",
+        "result = union_and_sort(set1, set2)\n",
+        "print(f\"Результат объединения и сортировки: {result}\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "7qjos2fVUqVT",
+        "outputId": "5e6aa4d2-68cd-4a95-d6c0-ea3e055aa54c"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Результат объединения и сортировки: [1, 2, 3, 4, 5]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "2.9 Разделение на группы: Напишите функцию, которая разделяет множество строк на две группы: строки с четной длиной и строки с нечетной длиной."
+      ],
+      "metadata": {
+        "id": "aZQtj4qMVGGT"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def split_strings_by_length(strings):\n",
+        "    even_length = []\n",
+        "    odd_length = []\n",
+        "    for string in strings:\n",
+        "        if len(string) % 2 == 0:\n",
+        "            even_length.append(string)\n",
+        "        else:\n",
+        "            odd_length.append(string)\n",
+        "    return even_length, odd_length\n",
+        "strings = {\"apple\", \"banana\", \"kiwi\", \"pear\", \"grape\", \"orange\"}\n",
+        "even_group, odd_group = split_strings_by_length(strings)\n",
+        "print(f\"Строки с четной длиной: {even_group}\")\n",
+        "print(f\"Строки с нечетной длиной: {odd_group}\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "re-HSsBCVJhx",
+        "outputId": "60760c4f-a80e-40a6-f61b-af709ad8d2de"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Строки с четной длиной: ['pear', 'orange', 'kiwi', 'banana']\n",
+            "Строки с нечетной длиной: ['apple', 'grape']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "2.10 Поиск уникальных символов: Напишите функцию, которая находит уникальные символы в строке с помощью множества."
+      ],
+      "metadata": {
+        "id": "bJZBWQquVXDO"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def unique_characters(input_string):\n",
+        "    unique_chars = set(input_string)\n",
+        "    return ''.join(unique_chars)\n",
+        "input_string = \"hello world\"\n",
+        "unique_chars = unique_characters(input_string)\n",
+        "print(f\"Уникальные символы в строке '{input_string}': {unique_chars}\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "fAFf_a9rVY-b",
+        "outputId": "2e3ce947-bb85-4080-8fbd-ac093464923b"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Уникальные символы в строке 'hello world': dh leowr\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "3.1 Кортеж с повторяющимися элементами: Напишите функцию, которая создает кортеж, где каждый элемент повторяется заданное количество раз."
+      ],
+      "metadata": {
+        "id": "tHw_1mNIVyRM"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def repeat_tuple_elements(input_tuple, repeat_count):\n",
+        "    repeated_tuple = tuple(element for element in input_tuple for _ in range(repeat_count))\n",
+        "    return repeated_tuple\n",
+        "input_tuple = (1, 'a', 3.14)\n",
+        "repeat_count = 3\n",
+        "result = repeat_tuple_elements(input_tuple, repeat_count)\n",
+        "print(f\"Исходный кортеж: {input_tuple}\")\n",
+        "print(f\"Кортеж с повторяющимися элементами: {result}\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "EkNs68cAV30w",
+        "outputId": "1f965178-7373-4485-bd0a-3cfd33aa4908"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Исходный кортеж: (1, 'a', 3.14)\n",
+            "Кортеж с повторяющимися элементами: (1, 1, 1, 'a', 'a', 'a', 3.14, 3.14, 3.14)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "3.2 Вложенные кортежи: Напишите функцию, которая создает вложенный кортеж, где первый уровень — это буквы алфавита, а второй уровень — числа от 1 до 5."
+      ],
+      "metadata": {
+        "id": "zrWyScaXWBlv"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def create_nested_tuple():\n",
+        "    import string\n",
+        "    alphabet = string.ascii_lowercase\n",
+        "    nested_tuple = tuple((letter, tuple(range(1, 6))) for letter in alphabet)\n",
+        "    return nested_tuple\n",
+        "result = create_nested_tuple()\n",
+        "for item in result:\n",
+        "    print(item)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "kHF55KU3WE45",
+        "outputId": "60976446-712a-472e-9d41-6790a151c339"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "('a', (1, 2, 3, 4, 5))\n",
+            "('b', (1, 2, 3, 4, 5))\n",
+            "('c', (1, 2, 3, 4, 5))\n",
+            "('d', (1, 2, 3, 4, 5))\n",
+            "('e', (1, 2, 3, 4, 5))\n",
+            "('f', (1, 2, 3, 4, 5))\n",
+            "('g', (1, 2, 3, 4, 5))\n",
+            "('h', (1, 2, 3, 4, 5))\n",
+            "('i', (1, 2, 3, 4, 5))\n",
+            "('j', (1, 2, 3, 4, 5))\n",
+            "('k', (1, 2, 3, 4, 5))\n",
+            "('l', (1, 2, 3, 4, 5))\n",
+            "('m', (1, 2, 3, 4, 5))\n",
+            "('n', (1, 2, 3, 4, 5))\n",
+            "('o', (1, 2, 3, 4, 5))\n",
+            "('p', (1, 2, 3, 4, 5))\n",
+            "('q', (1, 2, 3, 4, 5))\n",
+            "('r', (1, 2, 3, 4, 5))\n",
+            "('s', (1, 2, 3, 4, 5))\n",
+            "('t', (1, 2, 3, 4, 5))\n",
+            "('u', (1, 2, 3, 4, 5))\n",
+            "('v', (1, 2, 3, 4, 5))\n",
+            "('w', (1, 2, 3, 4, 5))\n",
+            "('x', (1, 2, 3, 4, 5))\n",
+            "('y', (1, 2, 3, 4, 5))\n",
+            "('z', (1, 2, 3, 4, 5))\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "3.3 Развертывание вложенного кортежа: Напишите функцию, которая разворачивает вложенный кортеж в плоский кортеж."
+      ],
+      "metadata": {
+        "id": "qD6tFSDUWSmF"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def flatten_tuple(nested_tuple):\n",
+        "    flat_list = []\n",
+        "    def flatten(item):\n",
+        "        if isinstance(item, tuple):\n",
+        "            for sub_item in item:\n",
+        "                flatten(sub_item)\n",
+        "        else:\n",
+        "            flat_list.append(item)\n",
+        "    flatten(nested_tuple)\n",
+        "    return tuple(flat_list)\n",
+        "nested = (('a', (1, 2, 3)), ('b', (4, 5)), ('c', (6,)))\n",
+        "flattened = flatten_tuple(nested)\n",
+        "print(flattened)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "pRHE45nyWfeF",
+        "outputId": "890a5646-dacb-4c52-dba7-cce29fa7ad1c"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "('a', 1, 2, 3, 'b', 4, 5, 'c', 6)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "3.4 Кортеж из двух списков: Напишите функцию, которая создает кортеж пар из двух списков одинаковой длины."
+      ],
+      "metadata": {
+        "id": "lpnVMcWfWmyn"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def create_tuple_of_pairs(list1, list2):\n",
+        "    if len(list1) != len(list2):\n",
+        "        raise ValueError(\"Списки должны быть одинаковой длины.\")\n",
+        "    return tuple((list1[i], list2[i]) for i in range(len(list1)))\n",
+        "list_a = [1, 2, 3]\n",
+        "list_b = ['a', 'b', 'c']\n",
+        "result = create_tuple_of_pairs(list_a, list_b)\n",
+        "print(result)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "skrsS2E_WxgI",
+        "outputId": "3cc00327-b096-470e-f950-1e81b1b5fba1"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "((1, 'a'), (2, 'b'), (3, 'c'))\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "3.5 Перевод кортежа в строку: Напишите функцию, которая преобразует кортеж строк в одну строку, объединяя их через пробел."
+      ],
+      "metadata": {
+        "id": "gHctXTM5W8ZM"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def tuple_to_string(tup):\n",
+        "    return ' '.join(tup)\n",
+        "example_tuple = ('Это', 'пример', 'кортежа', 'строк.')\n",
+        "result = tuple_to_string(example_tuple)\n",
+        "print(result)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "nj3hZXs8XAxd",
+        "outputId": "256d7892-3461-491c-bb5e-fe92947983bf"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Это пример кортежа строк.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "3.6 Перевод строки в кортеж чисел: Напишите функцию, которая преобразует строку чисел, разделенных запятыми, в кортеж чисел."
+      ],
+      "metadata": {
+        "id": "nAMfV-AYXLWs"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def string_to_tuple_of_numbers(s):\n",
+        "    numbers = tuple(int(num.strip()) for num in s.split(','))\n",
+        "    return numbers\n",
+        "example_string = \"1, 2, 3, 4, 5\"\n",
+        "result = string_to_tuple_of_numbers(example_string)\n",
+        "print(result)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "teMSwsxkXVO1",
+        "outputId": "9d30f067-741f-4a0e-f563-2a1685d48c1c"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "(1, 2, 3, 4, 5)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "3.7 Кортеж с четными числами: Напишите функцию, которая создает кортеж, содержащий только четные числа из заданного диапазона."
+      ],
+      "metadata": {
+        "id": "Ykhz5S4JXcEZ"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def even_numbers_tuple(start, end):\n",
+        "    even_numbers = tuple(num for num in range(start, end + 1) if num % 2 == 0)\n",
+        "    return even_numbers\n",
+        "start_range = 1\n",
+        "end_range = 10\n",
+        "result = even_numbers_tuple(start_range, end_range)\n",
+        "print(result)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "f4iT9iAJXg0s",
+        "outputId": "e8c7968b-16fb-4652-bf40-82fea6d56be7"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "(2, 4, 6, 8, 10)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "3.8 Кортеж с нечетными числами: Напишите функцию, которая создает кортеж, содержащий только нечетные числа из заданного диапазона."
+      ],
+      "metadata": {
+        "id": "pxwtqRJBXpZq"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def odd_numbers_tuple(start, end):\n",
+        "    odd_numbers = tuple(num for num in range(start, end + 1) if num % 2 != 0)\n",
+        "    return odd_numbers\n",
+        "start_range = 1\n",
+        "end_range = 10\n",
+        "result = odd_numbers_tuple(start_range, end_range)\n",
+        "print(result)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "g7DGETNbXrSb",
+        "outputId": "d0f6d0b2-a0a3-47a2-d59d-abefc0f6def6"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "(1, 3, 5, 7, 9)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "3.9 Кортеж с простыми числами: Напишите функцию, которая создает кортеж, содержащий только простые числа из заданного диапазона."
+      ],
+      "metadata": {
+        "id": "4M4yjbr0XyFJ"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def is_prime(num):\n",
+        "    if num <= 1:\n",
+        "        return False\n",
+        "    for i in range(2, int(num**0.5) + 1):\n",
+        "        if num % i == 0:\n",
+        "            return False\n",
+        "    return True\n",
+        "def prime_numbers_tuple(start, end):\n",
+        "    prime_numbers = tuple(num for num in range(start, end + 1) if is_prime(num))\n",
+        "    return prime_numbers\n",
+        "start_range = 1\n",
+        "end_range = 20\n",
+        "result = prime_numbers_tuple(start_range, end_range)\n",
+        "print(result)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "z_MdTCmyX0ay",
+        "outputId": "4c1072f7-03a5-4960-cc40-d0bdb3a851c1"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "(2, 3, 5, 7, 11, 13, 17, 19)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "3.10 Кортеж с палиндромами: Напишите функцию, которая создает кортеж, содержащий только строки-палиндромы из заданного списка строк."
+      ],
+      "metadata": {
+        "id": "FLM2fXUhYIvy"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def is_palindrome(s):\n",
+        "    s = s.lower()\n",
+        "    return s == s[::-1]\n",
+        "def palindromes_tuple(strings):\n",
+        "    palindrome_strings = tuple(s for s in strings if is_palindrome(s))\n",
+        "    return palindrome_strings\n",
+        "string_list = [\"level\", \"world\", \"radar\", \"python\", \"madam\", \"hello\", \"racecar\"]\n",
+        "result = palindromes_tuple(string_list)\n",
+        "print(result)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Dvr-RWKNYLqv",
+        "outputId": "7524ac09-c4b8-4c8f-cabb-6222d34401b7"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "('level', 'radar', 'madam', 'racecar')\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
